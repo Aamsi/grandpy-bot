@@ -1,2 +1,7 @@
 /env
 .flaskenv
+notes
+.vscode
+.pytest_cache
+__pycache__
+*.pyc
