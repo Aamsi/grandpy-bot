@@ -5,26 +5,36 @@ from stop_words import STOP_WORDS
 
 class ParsingMessage():
     
-    def __init__(self):
+    def __init__(self, msg_received):
         self.stop_words = STOP_WORDS
-        self.msg = ""
-    
+        self.msg_parsed = self.parse(msg_received)
+        self.keyword = self.get_keyword()
+
     def parse(self, msg):
         delimiters = ['-', ' ', "'", '.', "?", "!"]
         reg_pattern = '|'.join(map(re.escape, delimiters))
         msg_splitted = re.split(reg_pattern, msg)
         msg_parsed = []
-        print(msg_splitted)
+
         for word in msg_splitted:
             if word.lower() not in self.stop_words:
                 msg_parsed.append(word)
-        self.msg = ' '.join(msg_parsed)
+
+        return msg_parsed
+    
+    def get_keyword(self):
+        if 'adresse' in self.msg_parsed:
+            index = self.msg_parsed.index('adresse')
+            return self.msg_parsed[index + 1]
+        
+        return None
+
+
         
 
 
 
 
-parsing = ParsingMessage()
-parsing.parse("Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?")
+parsing = ParsingMessage("Je veux l'adresse d'OpenClassrooms veux")
 
-print(parsing.msg)
+print(parsing.keyword)
