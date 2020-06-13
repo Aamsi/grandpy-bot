@@ -3,29 +3,6 @@ import requests
 from parsing import ParsingMessage
 
 
-# title = ""
-# payload = {
-#     'action': 'query',
-#     'format': 'json',
-#     'generator': 'search',
-#     'gsrsearch': 'Openclassroom',
-# }
-
-# r = requests.get("https://fr.wikipedia.org/w/api.php", params=payload)
-# print(r.url)
-# for page in r.json()['query']['pages'].values():
-#     if page['title'] == "OpenClassrooms":
-#         title = page['title']
-
-# payload = {
-#     'action': 'query',
-#     'format': 'json',
-#     'pageids': 4338589,
-# }
-
-# r = requests.get(f"https://fr.wikipedia.org/api/rest_v1/page/summary/{title}")
-# print(r.json()['extract'])
-
 class WikiInfo():
 
     def __init__(self, msg_received):
