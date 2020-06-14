@@ -1,12 +1,13 @@
 import re
 
-from stop_words import STOP_WORDS
+
+from app import app_bot, stop_words
 
 
 class ParsingMessage():
     
     def __init__(self, msg_received):
-        self.stop_words = STOP_WORDS
+        self.stop_words = stop_words.STOP_WORDS
         self.msg_parsed = self.parse(msg_received)
         self.keyword = self.get_keyword()
 
@@ -28,13 +29,3 @@ class ParsingMessage():
             return self.msg_parsed[index + 1]
         
         return None
-
-
-        
-
-
-
-
-parsing = ParsingMessage("Je veux l'adresse d'OpenClassrooms veux")
-
-print(parsing.keyword)

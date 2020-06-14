@@ -1,19 +1,21 @@
 import requests
 
-from parsing import ParsingMessage
+
+from app import app_bot, parsing
 
 
 class MapInfo():
 
     def __init__(self, msg_received):
-        self.parse = ParsingMessage("Je veux l'adresse d'OpenClassrooms")
-        self.msg_received = self.parse.keyword 
+        self.msg_received = msg_received
+        self.parse = parsing.ParsingMessage(self.msg_received)
+        self.msg_parsed = self.parse.keyword 
         self.api_key = ""
         self.url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
     
     def get_coordinates(self):
         payloads = {
-            'input': self.msg_received,
+            'input': self.msg_parsed,
             'inputtype': 'textquery',
             'fields': 'geometry',
             'key': self.api_key,
@@ -25,5 +27,3 @@ class MapInfo():
         
         return geometry
 
-# mape = MapInfo("OpenClassrooms")
-# mape.get_coordinates()
