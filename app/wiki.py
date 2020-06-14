@@ -25,7 +25,7 @@ class WikiInfo():
         r = requests.get(self.get_title_url, params=get_title_payload)
         print(r.url)
         for page in r.json()['query']['pages'].values():
-            if msg in page['title'].split(' '):
+            if msg.lower() in page['title'].lower().split(' '):
                 return page['title']
 
     def get_summary(self):
