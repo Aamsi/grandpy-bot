@@ -6,3 +6,5 @@ notes
 __pycache__
 *.pyc
 .env
+settings.py
+local_settings.py
