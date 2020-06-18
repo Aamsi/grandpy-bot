@@ -27,5 +27,5 @@ class ParsingMessage():
         if 'adresse' in self.msg_parsed:
             index = self.msg_parsed.index('adresse')
             return self.msg_parsed[index + 1]
-        
-        return None
+
+        return self.msg_parsed
