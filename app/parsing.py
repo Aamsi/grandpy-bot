@@ -9,7 +9,6 @@ class ParsingMessage():
     def __init__(self, msg_received):
         self.stop_words = stop_words.STOP_WORDS
         self.msg_parsed = self.parse(msg_received)
-        self.keyword = self.get_keyword()
 
     def parse(self, msg):
         delimiters = ['-', ' ', "'", '.', "?", "!"]
@@ -22,10 +21,4 @@ class ParsingMessage():
                 msg_parsed.append(word)
 
         return msg_parsed
-    
-    def get_keyword(self):
-        if 'adresse' in self.msg_parsed:
-            index = self.msg_parsed.index('adresse')
-            return self.msg_parsed[index + 1]
 
-        return self.msg_parsed
