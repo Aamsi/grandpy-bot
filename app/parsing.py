@@ -19,6 +19,6 @@ class ParsingMessage():
         for word in msg_splitted:
             if word.lower() not in self.stop_words:
                 msg_parsed.append(word)
-
+        msg_parsed = ' '.join(msg_parsed)
         return msg_parsed
 
