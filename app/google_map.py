@@ -8,7 +8,7 @@ class MapInfo():
     def __init__(self, msg_received):
         self.msg_received = msg_received
         self.parse = parsing.ParsingMessage(self.msg_received)
-        self.msg_parsed = self.parse.keyword 
+        self.msg_parsed = self.parse.msg_parsed
         self.api_key = settings.GOOGLE_API_KEY
         self.url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
     
@@ -20,8 +20,6 @@ class MapInfo():
             'key': self.api_key,
         }
         r = requests.get(self.url, payloads)
-        print(r.json())
-        print(r.url)
         if r.json()['status'] == "ZERO_RESULTS":
             return None
         else:
