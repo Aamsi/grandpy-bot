@@ -6,7 +6,8 @@ from app import app_bot
 
 class WikiInfo():
 
-    def __init__(self, latitude, longitude):
+    def __init__(self, address, latitude, longitude):
+        self.address = address
         self.latitude = latitude
         self.longitude = longitude
         self.get_title_url = "https://fr.wikipedia.org/w/api.php"
@@ -21,8 +22,18 @@ class WikiInfo():
             'gscoord': f"{self.latitude}|{self.longitude}"
         }
         r = requests.get(self.get_title_url, params=get_title_payload)
+        # print(r.url)
+        pages = r.json()['query']['geosearch']
+        titles = [page['title'] for page in pages]
+        address_list = self.address.split(' ')
+        for title in titles:
+            title_split = title.split(' ')
+            for word in address_list:
+                if word in title_split:
+                    index = titles.index(title)
+                    return titles[index]
 
-        return r.json()['query']['geosearch'][0]['title']
+        return None
 
     def get_summary(self):
         if self.title:
