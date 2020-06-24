@@ -18,12 +18,12 @@ class MapInfoTest(unittest.TestCase):
     def test_google_url(self):
         # Mettre l'API key de settings
         url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=OpenClassrooms&inputtype=textquery&fields=formatted_address%2Cgeometry&key=12345"
-        map_info = MapInfo("OpenClassrooms")
+        map_info = MapInfo("Openclassrooms")
         expected_formatted_address = self.RESULT['candidates'][0]['formatted_address']
         expected_geometry = (self.RESULT['candidates'][0]['geometry']['location']['lat'],
                             self.RESULT['candidates'][0]['geometry']['location']['lng'])
         expected_result = {
-            'formatted_address': expected_formatted_address,
+            'address': expected_formatted_address,
             'geometry': expected_geometry
         }
 
