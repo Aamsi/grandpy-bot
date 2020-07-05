@@ -41,6 +41,11 @@ body {
     color: #000;
 }
 
+#mapid {
+    height: 500px;
+    width: 500px;
+}
+
 /* .msg-bot-left:before {
     content: "";
     width: 0px;
