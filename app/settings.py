@@ -1,6 +1,7 @@
 import os
 
 GOOGLE_API_KEY = ""
+MAPBOX_TOKEN = ""
 
 try:
     from app.local_settings import *
