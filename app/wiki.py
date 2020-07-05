@@ -10,20 +10,21 @@ class WikiInfo():
         self.address = address
         self.latitude = latitude
         self.longitude = longitude
-        self.get_title_url = "https://fr.wikipedia.org/w/api.php"
-        self.title = self.get_title()
-        self.get_summary_url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{self.title}"
+        self.get_pages_url = "https://fr.wikipedia.org/w/api.php"
 
-    def get_title(self):
-        get_title_payload = {
+    def get_response(self):
+        get_pages_payload = {
             'action': 'query',
             'format': 'json',
             'list': 'geosearch',
             'gscoord': f"{self.latitude}|{self.longitude}"
         }
-        r = requests.get(self.get_title_url, params=get_title_payload)
-        # print(r.url)
-        pages = r.json()['query']['geosearch']
+        r = requests.get(self.get_pages_url, params=get_pages_payload)
+        print(r.url)
+        return r.json()
+
+    def get_matching_page(self, response):
+        pages = response['query']['geosearch']
         titles = [page['title'] for page in pages]
         address_list = self.address.split(' ')
         for title in titles:
@@ -33,11 +34,13 @@ class WikiInfo():
                     index = titles.index(title)
                     return titles[index]
 
-        return None
+        return pages[0]
 
-    def get_summary(self):
-        if self.title:
-            r = requests.get(self.get_summary_url)
+    def get_summary(self, page):
+        url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{page}"
+        print("Vrai fonction:", url)
+        if page:
+            r = requests.get(url)
             print(r.url)
             summary = r.json()['extract']
             return summary
@@ -47,7 +50,3 @@ class WikiInfo():
 # map_info = WikiInfo('48.87409', '2.35064')
 # summary = map_info.get_summary()
 # print(summary)
-
-# je dois specifier que je veux situation et acces? C'est debile pcq c'est pas generique et que ca fonctionne que pour tres peu de page.
-# Je prefere utiliser extract car ca marche pour toutes les pages
-# https://fr.wikipedia.org/w/api.php?action=parse&pageid=5653202&format=json&prop=wikitext&section=1

@@ -19,15 +19,18 @@ class MapInfo():
         }
         r = requests.get(self.url, payloads)
         print(r.url)
-        if r.json()['status'] == "ZERO_RESULTS":
+        if not r.ok:
             return None
-        else:
-            formatted_address = r.json()['candidates'][0]['formatted_address']
-            geometry = (r.json()['candidates'][0]['geometry']['location']['lat'],
-                        r.json()['candidates'][0]['geometry']['location']['lng'])
-            return {
-                'address': formatted_address,
-                'geometry': geometry
-            }
-        
-
+        try:
+            if r.json()['status'] == "ZERO_RESULTS":
+                return None
+            else:
+                formatted_address = r.json()['candidates'][0]['formatted_address']
+                geometry = (r.json()['candidates'][0]['geometry']['location']['lat'],
+                            r.json()['candidates'][0]['geometry']['location']['lng'])
+                return {
+                    'address': formatted_address,
+                    'geometry': geometry
+                }
+        except KeyError:
+                return None
