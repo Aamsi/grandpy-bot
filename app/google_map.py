@@ -1,6 +1,6 @@
 import requests
 
-from app import app_bot, parsing, settings
+from app import settings
 
 
 class MapInfo():
@@ -8,7 +8,8 @@ class MapInfo():
     def __init__(self, msg_parsed):
         self.msg_parsed = msg_parsed
         self.api_key = settings.GOOGLE_API_KEY
-        self.url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
+        self.url = "https://maps.googleapis.com/maps/api/place/\
+findplacefromtext/json"
 
     def get_address_and_coord(self):
         payloads = {
@@ -22,15 +23,17 @@ class MapInfo():
         if not r.ok:
             return None
         try:
-            if r.json()['status'] == "ZERO_RESULTS":
-                return None
-            else:
-                formatted_address = r.json()['candidates'][0]['formatted_address']
-                geometry = (r.json()['candidates'][0]['geometry']['location']['lat'],
-                            r.json()['candidates'][0]['geometry']['location']['lng'])
+            res = r.json()
+            if res['status'] == "OK":
+                formatted_address = res['candidates'][0]['formatted_address']
+                location = res['candidates'][0]['geometry']['location']
+                geometry = (location['lat'],
+                            location['lng'])
                 return {
                     'address': formatted_address,
                     'geometry': geometry
                 }
-        except KeyError:
+            else:
                 return None
+        except KeyError:
+            return None
