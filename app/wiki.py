@@ -1,9 +1,6 @@
 import requests
 
 
-from app import app_bot
-
-
 class WikiInfo():
 
     def __init__(self, address, latitude, longitude):
@@ -34,11 +31,12 @@ class WikiInfo():
                     index = titles.index(title)
                     return titles[index]
 
-        return pages[0]
+        return titles[0]
 
     def get_summary(self, page):
         url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{page}"
         print("Vrai fonction:", url)
+        # Handle la key error de extract
         if page:
             r = requests.get(url)
             print(r.url)
@@ -46,7 +44,3 @@ class WikiInfo():
             return summary
 
         return None
-
-# map_info = WikiInfo('48.87409', '2.35064')
-# summary = map_info.get_summary()
-# print(summary)

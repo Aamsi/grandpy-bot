@@ -35,13 +35,13 @@ def process_message():
         summary = wiki_info.get_summary(page)
 
         if address and summary:
-            return jsonify({'response': 'success',
-                            'address': address,
-                            'summary': summary,
-                            'lat': coord[0],
-                            'long': coord[1],
-                            'token': settings.MAPBOX_TOKEN
-                        })
+            return jsonify({
+                'response': 'success',
+                'address': address,
+                'summary': summary,
+                'lat': coord[0],
+                'long': coord[1],
+                'token': settings.MAPBOX_TOKEN
+            })
         else:
             return jsonify({'response': 'fail'})
-        

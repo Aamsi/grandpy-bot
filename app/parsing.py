@@ -1,11 +1,11 @@
 import re
 
 
-from app import app_bot, stop_words
+from app import stop_words
 
 
 class ParsingMessage():
-    
+
     def __init__(self, msg_received):
         self.stop_words = stop_words.STOP_WORDS
         self.msg_parsed = self.parse(msg_received)
@@ -21,4 +21,3 @@ class ParsingMessage():
                 msg_parsed.append(word)
         msg_parsed = ' '.join(msg_parsed)
         return msg_parsed
-
