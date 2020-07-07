@@ -19,7 +19,6 @@ findplacefromtext/json"
             'key': self.api_key,
         }
         r = requests.get(self.url, payloads)
-        print(r.url)
         if not r.ok:
             return None
         try:

@@ -18,7 +18,6 @@ def process_message():
     if msg_content:
         # Parse message
         parse = parsing.ParsingMessage(msg_content)
-        print(parse.msg_parsed)
         # Get coordinates
         map_info = google_map.MapInfo(parse.msg_parsed)
         place_info = map_info.get_address_and_coord()

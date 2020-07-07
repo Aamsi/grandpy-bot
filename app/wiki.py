@@ -17,7 +17,6 @@ class WikiInfo():
             'gscoord': f"{self.latitude}|{self.longitude}"
         }
         r = requests.get(self.get_pages_url, params=get_pages_payload)
-        print(r.url)
         return r.json()
 
     def get_matching_page(self, response):
@@ -35,11 +34,9 @@ class WikiInfo():
 
     def get_summary(self, page):
         url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{page}"
-        print("Vrai fonction:", url)
         # Handle la key error de extract
         if page:
             r = requests.get(url)
-            print(r.url)
             summary = r.json()['extract']
             return summary
 
