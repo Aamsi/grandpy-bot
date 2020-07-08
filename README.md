@@ -16,6 +16,11 @@ Vous pouvez aussi l'installer en local.
 
 ```git clone https://github.com/Aamsi/grandpy-bot.git```
 
+**Créer votre environnemment virtuel**
+
+- ```virtualenv env``` à la racine du projet
+- ```source env/bin/activate``` pour activer l'environnement virtuel
+
 **Installer les librairies necessaires**
 
 ```pip install -r requirements.txt```
