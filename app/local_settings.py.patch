@@ -1,2 +1,4 @@
 GOOGLE_API_KEY = ""
 MAPBOX_TOKEN = ""
+# Uncomment when testing
+# GOOGLE_API_KEY = "12345"
