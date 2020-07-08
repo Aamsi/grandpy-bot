@@ -1,7 +1,7 @@
 import os
 
-GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
-MAPBOX_TOKEN = os.environ.get('MAPBOX_TOKEN')
+GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+MAPBOX_TOKEN = os.environ['MAPBOX_TOKEN']
 
 PATH_TO_TEST_RESSOURCES = os.path.join('ressources', 'pages_wiki.json')
 
