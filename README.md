@@ -30,7 +30,7 @@ Vous pouvez aussi l'installer en local.
 
 Posez vos questions au bot! :+1:
 
-## Lancer les tests
+## Lancer les tests à la racine du projet
 
 - Décommentez les lignes dans le fichier ```local_settings.py```
 - run ```python -m unittest discover```
