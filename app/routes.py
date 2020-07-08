@@ -23,7 +23,7 @@ def process_message():
         place_info = map_info.get_address_and_coord()
 
         if not place_info:
-            return jsonify({'response': 'fail'})
+            return jsonify({'response': 'fail', "error": "placerror"})
         coord = place_info['geometry']
         address = place_info['address']
 
@@ -43,4 +43,4 @@ def process_message():
                 'token': settings.MAPBOX_TOKEN
             })
         else:
-            return jsonify({'response': 'fail'})
+            return jsonify({'response': 'fail', 'error': 'no address and summary'})
