@@ -14,11 +14,16 @@ Vous pouvez aussi l'installer en local.
 
 **Clôner le repo**
 
-```git clone https://github.com/Aamsi/grandpy-bot.git```
+- ```git clone https://github.com/Aamsi/grandpy-bot.git```
+
+**Créer votre environnemment virtuel**
+
+- ```virtualenv env``` à la racine du projet
+- ```source env/bin/activate``` pour activer l'environnement virtuel
 
 **Installer les librairies necessaires**
 
-```pip install -r requirements.txt```
+- ```pip install -r requirements.txt```
 
 **Fournir une API KEY pour Google Map et MapBox**
 - Vous pouvez créer un fichier ```local_settings.py``` et mettre vos variables dedans (voir le fichier patch)
