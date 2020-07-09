@@ -6,15 +6,11 @@ GrandPyBot est un robot qui peut vous donner des informations sur différents li
 
 Posez-lui une question, et il vous donnera l'adresse du lieu et des informations sur l'endroit.
 
-Vous pouvez visiter le projet sur le lien: https://git.heroku.com/p7-app.git
+Vous pouvez visiter le projet sur le lien: https://p7-app.herokuapp.com
 
 Vous pouvez aussi l'installer en local.
 
 ## Installation
-
-**Clôner le repo**
-
-- ```git clone https://github.com/Aamsi/grandpy-bot.git```
 
 **Créer votre environnemment virtuel**
 
@@ -26,7 +22,7 @@ Vous pouvez aussi l'installer en local.
 - ```pip install -r requirements.txt```
 
 **Fournir une API KEY pour Google Map et MapBox**
-- Vous pouvez créer un fichier ```local_settings.py``` et mettre vos variables dedans (voir le fichier patch)
+- Vous pouvez créer un fichier ```local_settings.py``` et mettre vos variables dedans (voir le fichier template)
 - Avec heroku, créez un fichier ```.env```
 
 **Lancer l'application à la racine du projet**
