@@ -45,30 +45,4 @@ body {
     height: 500px;
     width: 500px;
 }
-
-/* .msg-bot-left:before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 24px solid #006633;
-    border-right: 12px solid transparent;
-    border-top: 12px solid #006633;
-    border-bottom: 20px solid transparent;
-    left: 32px;
-    bottom: -24px;
-  }
-
-.msg-bot-right:before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 12px solid transparent;
-    border-right: 24px solid #f2f2f2;
-    border-top: 12px solid #f2f2f2;
-    border-bottom: 20px solid transparent;
-    right: 32px;
-    bottom: -24px;
-  } */
   
