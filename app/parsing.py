@@ -19,5 +19,10 @@ class ParsingMessage():
         for word in msg_splitted:
             if word.lower() not in self.stop_words:
                 msg_parsed.append(word)
+
+        for i, word in enumerate(msg_parsed):
+            if word == "adresse":
+                return msg_parsed[i + 1]
+
         msg_parsed = ' '.join(msg_parsed)
         return msg_parsed
