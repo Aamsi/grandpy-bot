@@ -4,6 +4,9 @@ from app import settings
 
 
 class MapInfo():
+    """
+        Get location info with google map API Place
+    """
 
     def __init__(self, msg_parsed):
         self.msg_parsed = msg_parsed

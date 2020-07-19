@@ -7,7 +7,7 @@ class ParsingTest(unittest.TestCase):
 
     def test_parse_address(self):
         """
-            Test if we correctly parsed the message with 'address' in message
+            Test if we correctly parsed the message with 'adresse' in message
         """
         msg = "Je veux l'adresse d'OpenClassrooms"
         test_parse = ParsingMessage(msg)
