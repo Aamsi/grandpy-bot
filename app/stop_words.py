@@ -77,3 +77,4 @@ STOP_WORDS = ["a","abord","absolument","afin","ah","ai","aie","ailleurs",
               "vive","vives","vlan","voici","voilà","vont","vos","votre","vous",
               "vous-mêmes","vu","vé","vôtre","vôtres","w","x","y","z","zut","à",
               "â","ça","ès","étaient","étais","était","étant","été","être","ô"]
+# flake8: noqa

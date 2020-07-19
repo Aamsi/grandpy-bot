@@ -43,4 +43,5 @@ def process_message():
                 'token': settings.MAPBOX_TOKEN
             })
         else:
-            return jsonify({'response': 'fail', 'error': 'no address and summary'})
+            return jsonify({'response': 'fail', 'error': 'no address and\
+ summary'})

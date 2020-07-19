@@ -44,7 +44,7 @@ class WikiTest(unittest.TestCase):
         self.assertEqual(result_to_test, expected_result)
 
     def test_get_matching_page(self):
-        """ Test if we get the right page with wikipedia """ 
+        """ Test if we get the right page with wikipedia """
         address = "7 Cité Paradis, 75010 Paris, France"
         expected_result = "Cit\u00e9 Paradis"
         with open(self.WIKI_JSON_PATH) as json_file:
@@ -56,7 +56,9 @@ class WikiTest(unittest.TestCase):
         self.assertEqual(result_to_test, expected_result)
 
     def test_get_matching_page_first(self):
-        """ If no matching page is found, get the first page found with wikipedia """
+        """
+          If no matching page is found, get the first page found with wikipedia
+        """
         address = "Champ de Mars, 5 Avenue Anatole France, 75007 Paris"
         expected_result = "Hôtel Botterel de Quintin"
         with open(self.WIKI_JSON_PATH) as json_file:
