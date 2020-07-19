@@ -1,18 +1,10 @@
-/* Utiliser les colonnes et pas flex */
-/* Ne pas reecrire row */
-
-.row {
-    display: flex;
-    flex-direction: column-reverse;
-    width: 100%;
-    height: 100%;
+.navbar {
+    z-index: 2000;
 }
 
-body {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    overflow: auto;
+.input-group {
+    padding-right: 10%;
+    padding-left: 10%;
 }
 
 .msg-left p {
@@ -23,7 +15,7 @@ body {
     line-height: 15px;
     background:#a3c2c2;
     border-radius: 5px;
-    padding: 5%;
+    padding: 6%;
     text-align: left;
     color: #000;
 }
@@ -36,13 +28,14 @@ body {
     line-height: 15px;
     background: #f2f2f2;
     border-radius: 5px;
-    padding: 5%;
+    padding: 6%;
     text-align: left;
     color: #000;
 }
 
 #mapid {
-    height: 500px;
-    width: 500px;
+    height: 300px;
+    width: 300px;
+    border: solid;
 }
   
