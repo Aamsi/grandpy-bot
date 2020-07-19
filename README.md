@@ -12,7 +12,7 @@ Vous pouvez aussi l'installer en local.
 
 ## Installation
 
-**Créer votre environnemment virtuel**
+**Créer l'environnemment virtuel**
 
 - ```virtualenv env``` à la racine du projet
 - ```source env/bin/activate``` pour activer l'environnement virtuel
