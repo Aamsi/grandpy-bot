@@ -7,6 +7,14 @@
     padding-left: 10%;
 }
 
+.msg-conv {
+    bottom: 15%;
+    padding-left: 10%;
+    padding-right: 10%;
+    max-height: 100%;
+    overflow: auto;
+}
+
 .msg-left p {
     box-shadow: 1px 1px 5px black;
     font-family: sans-serif;
