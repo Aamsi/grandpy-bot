@@ -16,6 +16,7 @@ findplacefromtext/json"
             'input': self.msg_parsed,
             'inputtype': 'textquery',
             'fields': 'formatted_address,geometry',
+            'locationbias': 'circle:2000@48.8534,2.3488',
             'key': self.api_key,
         }
         r = requests.get(self.url, payloads)
