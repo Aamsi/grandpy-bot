@@ -15,13 +15,22 @@ function ConvChat (selector) {
         firstMsg: "",
         map: "",
         sndMsg: "",
-        errorMsg: ""
+        errorMsg: "",
+        smallTalkMsg: ""
     }
 
     this.getMsg = function () {
         that.msgReceived = that.msgInput.val();
+        that.botMsg.smallTalkMsg = that.checkSmallTalk(that.msgReceived);
         if (that.msgReceived) {
             that.sendMsg();
+            if (that.botMsg.smallTalkMsg) {
+                $(".btn-send").hide();
+                $(".btn-load").show();
+                that.msgReceived = "";
+                that.sendMsg();
+                return;
+            }
             $.post('/process_msg', {
                 msg_content: that.msgReceived
             }, function (res) {
@@ -32,14 +41,17 @@ function ConvChat (selector) {
                     that.long = res.long;
                     that.token = res.token;
                     that.botMsg.firstMsg = `Bien sûr mon poussin ! La voici: ${that.address}.`;
-                    that.botMsg.sndMsg = `Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? ${that.summary}`;
+                    that.botMsg.sndMsg = `Tu veux des infos sur ce lieu? ${that.summary}`;
                     delete that.botMsg.errorMsg;
+                    delete that.botMsg.smallTalkMsg;
                 } else {
                     that.botMsg.errorMsg = "Desole, je n'ai pas compris";
                 };
                 that.msgReceived = "";
             })
             .done(function() {
+                $(".btn-load").hide();
+                $(".btn-send").show();
                 that.sendMsg();
             });
         };
@@ -47,22 +59,51 @@ function ConvChat (selector) {
 
     this.sendMsg = function () {
         if (that.msgReceived) {
-            that.msgBlock = `<div class='col-md-3 ml-2 mb-3 msg-left'><p>${that.msgReceived}</p></div>`
+            that.msgBlock = `<div class="msg-left row">
+                                <div class="col-md-12">
+                                    <div class="float-left"><p>${that.msgReceived}&nbsp;&nbsp;</p></div>
+                                </div>
+                            </div>`
             that.component.prepend(that.msgBlock);
+            $(".btn-load").show();
+            $(".btn-send").hide();
         } else {
             if (that.botMsg.errorMsg) {
-                that.msgBlock = `<div class='col-md-3 ml-2 mb-3 msg-right'><p>${that.botMsg.errorMsg}</p></div>`
+                that.msgBlock = `<div class="msg-right row">
+                                    <div class="col-md-12">
+                                        <div class="float-right"><p>${that.botMsg.errorMsg}</p></div>
+                                    </div>
+                                </div>`;
                 that.component.prepend(that.msgBlock);
                 delete that.botMsg.errorMsg;
+                return;
+            } else if (that.botMsg.smallTalkMsg) {
+                that.msgBlock = `<div class="msg-right row">
+                                    <div class="col-md-12">
+                                        <div class="float-right"><p>${that.botMsg.smallTalkMsg}</p></div>
+                                    </div>
+                                </div>`
+                that.component.prepend(that.msgBlock);
+                $(".btn-load").hide();
+                $(".btn-send").show();
+                delete that.botMsg.smallTalkMsg;
                 return;
             }
             for (const [key, value] of Object.entries(that.botMsg)) {
                 if (key == 'map') {
-                    that.msgBlock = `<div class='col-md-3 ml-2 mb-3 msg-right'><div id='mapid'>${value}</div></div>`;
+                    that.msgBlock = `<div class="msg-right row">
+                                        <div class="col-md-12 mb-3">
+                                            <div id="mapid" class="float-right"><p>${value}</p></div>
+                                        </div>
+                                    </div>`;
                     that.component.prepend(that.msgBlock);
                     that.createMap(that.lat, that.long, that.token);
                 } else {
-                    that.msgBlock = `<div class='col-md-3 ml-2 mb-3 msg-right'><p>${value}</p></div>`
+                    that.msgBlock = `<div class="msg-right row">
+                                        <div class="col-md-12">
+                                            <div class="float-right"><p>${value}</p></div>
+                                        </div>
+                                    </div>`;
                     that.component.prepend(that.msgBlock);
                 }
             };
@@ -82,6 +123,28 @@ function ConvChat (selector) {
         L.marker([lat, long]).addTo(that.botMsg.map);
     };
 
+    this.checkSmallTalk = function (msg) {
+        switch (msg.toLowerCase()) {
+            case "bonjour":
+            case "bonjour!":
+            case "salut!":
+            case "hey":
+            case "coucou":
+                return "Coucou toi!"
+            case "ca va?":
+            case "ca va":
+            case "comment vas-tu?":
+            case "comment ca va?":
+                return "Ca va bien, merci."
+            case "comment tu t'appelles?":
+            case "t'es qui?":
+            case "t'as quel age?":
+            case "tu fais quoi dans la vie?":
+            case "tu t'appelles comment?":
+                return "T'as pas besoin de le savoir."
+        }
+    }
+
     this.update = function () {
         that.getMsg();
         that.msgInput.val('');
@@ -89,9 +152,11 @@ function ConvChat (selector) {
 };
 
 
-var convChat = new ConvChat(".msg-thread");
+var convChat = new ConvChat(".msg-conv");
 
-$(".btn").click(function(e) {
+$(".btn-send").click(function(e) {
     e.preventDefault();
     convChat.update();
 });
+
+$(".btn-load").hide();
