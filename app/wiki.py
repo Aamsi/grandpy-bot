@@ -29,12 +29,13 @@ class WikiInfo():
                 if word in title_split:
                     index = titles.index(title)
                     return titles[index]
-
-        return titles[0]
+        if titles:
+            return titles[0]
+        else:
+            return None
 
     def get_summary(self, page):
         url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{page}"
-        # Handle la key error de extract
         if page:
             r = requests.get(url)
             summary = r.json()['extract']
