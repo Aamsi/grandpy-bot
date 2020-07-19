@@ -35,6 +35,7 @@ findplacefromtext/json"
         }
 
     def test_google_url_ok(self):
+        """ Test if we get the right result with google map API """
         url_prepare = Request('GET', self.url, params=self.payloads).prepare()
         result = self.RESULT_OK['candidates'][0]
         expected_formatted_address = result['formatted_address']
@@ -53,6 +54,7 @@ findplacefromtext/json"
         self.assertEqual(result_to_test, expected_result)
 
     def test_google_url_ko(self):
+        """ Test that we have no results when google map finds nothing """
         url_prepare = Request('GET', self.url, params=self.payloads).prepare()
         expected_result = None
 
@@ -64,6 +66,7 @@ findplacefromtext/json"
         self.assertEqual(result_to_test, expected_result)
 
     def test_error_http(self):
+        """ Test that we have None result when status error is 404 """
         url_prepare = Request('GET', self.url, params=self.payloads).prepare()
         expected_result = None
 
