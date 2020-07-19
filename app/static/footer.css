@@ -37,7 +37,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   }
   
-  ul li a .fa {
+  ul li a .fas, ul li a .fab {
     width: 100%;
     height:100%;
     display:block;
@@ -49,22 +49,14 @@ body {
     transition: .5s;
   }
   
-  ul li:nth-child(1) a:hover .fa {
-    color: #3b5998;
-  }
-  
-  ul li:nth-child(2) a:hover .fa {
-    color: #00aced;
-  }
-  
-  ul li:nth-child(3) a:hover .fa {
+  ul li a:hover .fa-envelope{
     color: #dd4b39;
   }
   
-  ul li:nth-child(4) a:hover .fa {
+  ul li a:hover .fa-linkedin{
     color: #007bb6;
   }
   
-  ul li:nth-child(5) a:hover .fa {
-    color: #e4405f;
-  }
+ ul li a:hover .fa-github {
+    color: grey;
+ }
